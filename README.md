@@ -1,2 +1,2 @@
-# Bi296_Project
+# Bi296_Project for WZY
 Project for bi296 course
