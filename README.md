@@ -1,4 +1,4 @@
 # Bi296_Project
 Project for bi296 course
-
-Add some file for testing
+This is branch for dev software.
+Please fix your bug in here.
