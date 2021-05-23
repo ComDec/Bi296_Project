@@ -90,24 +90,40 @@ int main(int argc, char **argv)
       {
 	//printf("%s\n",argv[1]);
         if (strcmp(argv[1],"-h") ==0 || strcmp (argv[1],"help") ==0)
-	   { printhelp();
-	     printf("This is Help Document. Written by WX-WZY-GRC group.\n");
+	   { 
+	     printhelp();
 	     exit(1);
 	   }
-        if (strcmp(argv[1],"-c") ==0 || strcmp (argv[1],"convert") ==0)
-	   { //FiletoSeq("./argv[2]","argv[2]");
+        else if (strcmp(argv[1],"-c") ==0 || strcmp (argv[1],"convert") ==0)
+	   { 
+	     //FiletoSeq("./argv[2]","argv[2]");
 	     printf("Converting file to Seq....\n");
 	     exit(1);
 	   }
-        if (strcmp(argv[1],"-gz") ==0 || strcmp (argv[1],"gzip") ==0)
-	   { //Gzip("./argv[2]","argv[2]");
+        else if (strcmp(argv[1],"-gz") ==0 || strcmp (argv[1],"gzip") ==0)
+	   { 
+	     //Gzip("./argv[2]","argv[2]");
 	     printf("Compressing Seq to gzip...\n");
 	     exit(1);
 	   }
-        if (strcmp(argv[1],"-7z") ==0 || strcmp (argv[1],"7zip") ==0)
-	   { //7zip("./argv[2]","argv[2]");
+        else if (strcmp(argv[1],"-7z") ==0 || strcmp (argv[1],"7zip") ==0)
+	   { 
+    	     //7zip("./argv[2]","argv[2]");
 	     printf("Compressing Seq to 7zip...\n");
 	     exit(1);
+	   }
+	else if (strcmp(argv[1],"-t") ==0 || strcmp (argv[1],"test") ==0)
+	   { 
+    	     //test("./argv[2]","argv[2]");
+	     printf("Compare different compression algorithm of your file\n");
+	     exit(1);
+	   }
+	else
+	   {
+	     printf("\n");
+	     printf(" Parameter is elusive. Please check your input and manual.\n");
+	     printf("\n");
+	     printhelp();
 	   }
 
       }

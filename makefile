@@ -14,8 +14,8 @@ NAME_LIB = Project
 all: $(PATH_SRC)/*.c 
 	$(CC) -c ./src/*.c -I $(PATH_HEAD) 
 	ar -rsv $(PATH_LIB)/lib$(NAME_LIB).a *.o 
-.PHONY: link
-link:
+.PHONY: install
+install:
 	$(CC) -o $(PATH_BIN)/main $(PATH_BIN)/main.c -L $(PATH_LIB) -l$(NAME_LIB) -I $(PATH_HEAD) 
 .PHONY: clean
 clean:

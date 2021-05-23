@@ -1,6 +1,51 @@
+ 
+****************************************** 
+
  * This is a document for syntax assistance
  * Copyright(C) 2021-2022 WX-WZY-GRC Group
  * Written by WX in 2021.5
 
  * Version: 1.0 (dev)
  * Lasted edit time: 2021.5.21
+
+ ****************************************** 
+
+Introduction
+
+  * Welcome to use DNACom
+
+  * This is a program developed by Xi Wang, Zhongyi Wang, and Ruichu Gu.
+
+    Our github repo is github.com/ComDec/Bi296_Project.git
+
+
+  * DNACom exert multifunctions.
+
+  --Convertion: Convert copious format file into a standard dcm file.
+
+  --Compression: Compressing sequence with various algorithms.
+
+  --Test: Test the performance of different algorithms to compress your file. 
+
+
+Basic Usage
+
+  ./main [Option] [Parameter] [Filename] ...
+
+[OPTION]
+
+  -h      Obtain help from our doc
+   help
+
+  -c	  Convert Filename into 'dcm' file
+   convert
+          
+  -7z     Compress dcm file into 7z format. The 7z filename is required.
+   7zip
+  
+  -gz     Compress dcm file into gzip format. The gzip filename is required.
+   gzip 
+
+  -t      Compare multipy algorithm to compress your file. 
+   test   Proffer a rank of compression rate and compression time.
+   

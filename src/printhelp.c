@@ -1,35 +1,38 @@
 #include "printhelp.h"
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#define MAX_LINE 1024 
 void printhelp()
 {
-	
-	FILE *pfile = fopen("./doc/help.txt", "rb");
-	if (pfile == NULL) {
-		printf("open file failed!\n");
-		exit(0);
-	}
+ char buf[MAX_LINE];
 
-	
-	fseek(pfile,0, SEEK_END);
-	int file_length = ftell(pfile);
-	rewind(pfile);
+ FILE *fp;
 
-	
-	int text_length = file_length * sizeof(char) + 1;
-	char* text_buffer = (char*)malloc(text_length);
-	memset(text_buffer, 0, text_length);
+ int len;
 
-	
-	int read_length = fread(text_buffer, 1, file_length, pfile);
-	if (read_length != file_length) {
-		printf("read file failed!\n");
-		exit(0);
-	}
+ if((fp =fopen("../doc/help.txt","r")) == NULL)
 
-	
-	printf(text_buffer);
-	free(text_buffer);
-	fclose(pfile);
+ {
+ perror("File lost. Please see Q&A doc to find help or Reinstall this program.\n");
+
+ exit(1) ;
+
+ }
+
+ while(fgets(buf,MAX_LINE,fp) != NULL)
+
+ {
+ len= strlen(buf);
+
+ buf[len-1] = '\0';
+
+ printf("%s\n",buf);
+
+ }
+
+ 
+
 }
 
 
