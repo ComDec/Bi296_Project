@@ -1,5 +1,5 @@
 ############################
-# Author: Xi wang
+# Author: Xi Wang
 # Version: 1.0.1
 # Last edit time: 2021.4.11
 # Functions: Complie the c program file and pack up as static library
