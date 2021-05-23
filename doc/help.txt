@@ -1,0 +1,6 @@
+ * This is a document for syntax assistance
+ * Copyright(C) 2021-2022 WX-WZY-GRC Group
+ * Written by WX in 2021.5
+
+ * Version: 1.0 (dev)
+ * Lasted edit time: 2021.5.21
