@@ -1,4 +1,4 @@
-# Bi296_Project
+# Bi296_Project for WZY
 Project for bi296 course
 This is branch for dev software.
 Please fix your bug in here.
