@@ -22,13 +22,13 @@ Please fix your bug in here.
 
   -c	  Convert Filename into 'dcm' file
    convert
-          > Filename could be fastq, fasta, geo...
+          
   -7z     Compress dcm file into 7z format. The 7z filename is required.
    7zip
   
   -gz     Compress dcm file into gzip format. The gzip filename is required.
    gzip 
 
-  -t      Compare multipy algorithm to compress your file. Proffer a rank of compression rate and compression time.
-   test
+  -t      Compare multipy algorithm to compress your file. 
+   test   Proffer a rank of compression rate and compression time.
   
