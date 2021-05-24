@@ -32,6 +32,8 @@ static char  *license_msg[] = {
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <getopt.h>
+#include <unistd.h>
 
            /* Personal Libary */
 #include "printhelp.h"
@@ -64,6 +66,20 @@ add your function declare here.
 */
 
            /* Local Variables*/
+
+struct option longopts[] = {
+    { "transfer",    required_argument,    NULL,                't'    },
+    { "compress",    no_argument,          NULL,                'c'    },
+    { "decompress",  no_argument,          NULL,                'd'    },
+    { "help",        no_argument,          NULL,                'h'    },
+    { "gzip",        required_argument,    NULL,                'g'    },
+    { "7zip",        required_argument,    NULL,                'z'    },
+    { "optimize",    required_argument,    NULL,                'o'    },
+    {     0,    0,    0,    0},
+};
+
+char *l_opt_arg;  //Define a pointer to store the long option parameter
+
 /*
 *************************
 
@@ -82,54 +98,78 @@ int main(int argc, char **argv)
 	printf("\n");
 	printf("  Please checkout syntax in README.md file\n");
 	printf("\n");
-	printf("  Using parameter \"-h\" or \"help\" to obtain syntax help\n");
+	printf("  Using parameter \"-h\" or \"--help\" to obtain syntax help\n");
 	printf("\n");
 	exit(1);
       }
     else
       {
-	//printf("%s\n",argv[1]);
-        if (strcmp(argv[1],"-h") ==0 || strcmp (argv[1],"help") ==0)
-	   { 
-	     printhelp();
-	     exit(1);
-	   }
-        else if (strcmp(argv[1],"-c") ==0 || strcmp (argv[1],"convert") ==0)
-	   { 
-	     //FiletoSeq("./argv[2]","argv[2]");
-	     printf("Converting file to Seq....\n");
-	     exit(1);
-	   }
-        else if (strcmp(argv[1],"-gz") ==0 || strcmp (argv[1],"gzip") ==0)
-	   { 
-	     //Gzip("./argv[2]","argv[2]");
-	     printf("Compressing Seq to gzip...\n");
-	     exit(1);
-	   }
-        else if (strcmp(argv[1],"-7z") ==0 || strcmp (argv[1],"7zip") ==0)
-	   { 
-    	     //7zip("./argv[2]","argv[2]");
-	     printf("Compressing Seq to 7zip...\n");
-	     exit(1);
-	   }
-	else if (strcmp(argv[1],"-t") ==0 || strcmp (argv[1],"test") ==0)
-	   { 
-    	     //test("./argv[2]","argv[2]");
-	     printf("Compare different compression algorithm of your file\n");
-	     exit(1);
-	   }
-	else
-	   {
-	     printf("\n");
-	     printf(" Parameter is elusive. Please check your input and manual.\n");
-	     printf("\n");
-	     printhelp();
-	   }
 
-      }
+	int c;   //Receive the prompt parameters.
+	char ec; //Receive the errorous parameters.
+	const char *optstring="t:g:z:o:cdh";
+	int index;
+	int mode = 1;
 
+	while((c = getopt_long_only(argc,argv,optstring,longopts,&index)) != -1)
+	  {
+ 	    switch (c)
+	     {
+		case 'c':
+	          mode = 1;
+	          printf("****Compressing file mode****\n");
+	            if (argc < 3)
+		       printf("Please choose the compress or decompress mode\n");
+		  break;
 
+		case 'd':
+	          mode = 0;
+	          printf("****Decompressing file mode****\n");
+	            if (argc < 3)
+		       printf("Please choose the compress or decompress mode\n");
+		  break;
 
+	        case 't':
+	          l_opt_arg = optarg;
+	          //transfer(l_opt_arg);
+	          printf("Transfer %s file to dcm...\n", l_opt_arg);
+	          break;
+
+	        case 'g':
+	          l_opt_arg = optarg;
+	          //Gzip(l_opt_arg, mode);
+	          printf("Compressing %s Seq to gzip...\n", l_opt_arg);
+	          break;
+
+	        case 'z':
+	          l_opt_arg = optarg;
+	          //7zip(l_opt_arg, mode);
+	          printf("Compressing %s Seq to 7zip...\n", l_opt_arg);
+	          break;
+
+	        case 'o':
+	          l_opt_arg = optarg;
+	          //test(l_opt_arg);
+	          printf("Compare different compression algorithm of your file %s \n", l_opt_arg);
+	          break;
+
+	        case 'h':
+	          printhelp();
+	          break;
+
+	        case ':':
+	          printf("Parameters required\n");
+	          break;
+		
+		case '?':
+		  //ec = (char)optopt;
+		  printf("Parameters unknow\n");
+
+ 	     }	
+
+	  }
+
+	}
 
 }
 
