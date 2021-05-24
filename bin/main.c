@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 	int index;
 	int mode = 1;
 
-	while((c = getopt_long_only(argc,argv,optstring,longopts,&index)) != -1)
+	while((c = getopt_long(argc,argv,optstring,longopts,&index)) != -1)
 	  {
  	    switch (c)
 	     {
@@ -157,13 +157,15 @@ int main(int argc, char **argv)
 	          printhelp();
 	          break;
 
-	        case ':':
+	        /*
+		  case ':':
 	          printf("Parameters required\n");
 	          break;
 		
 		case '?':
-		  //ec = (char)optopt;
-		  printf("Parameters unknow\n");
+		  ec = (char)optopt;
+		  printf("Parameters unknow \"%c\"\n",ec);
+		*/
 
  	     }	
 
