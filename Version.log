@@ -1,0 +1,23 @@
+# DCom is a mini program for DNA sequences compression, decompression, and scheme advicing.
+# This is a document to record develop log.
+
+## Version 0.1
+
+   Release time: 2021.5.22
+
+   Construction of main function. Add a "printhelp()" function to print help doc. Provide options choose mode as FULL NAME and SHORT NAME (-h or help).
+
+## Version 0.2
+
+   Release time: 2021.5.24
+
+   Reconstruction of main function. Utilizing getopt() functions to obtain prompt parameters. Provide options with LONG OPTION, SHORT OPTION, and MIX OPTION.
+   (-h, --help, -cg)
+
+## Version 0.2.1
+
+   Release time: 2021.5.24
+
+   Fix bugs of main function.
+
+	 
