@@ -20,4 +20,9 @@
 
    Fix bugs of main function.
 
+## Version 0.2.2
+
+   Release time: 2021.5.26
+
+   Add restirction on mode choose. User must choose mode firstly.
 	 
