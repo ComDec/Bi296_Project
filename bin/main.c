@@ -109,7 +109,7 @@ int main(int argc, char **argv)
 	char ec; //Receive the errorous parameters.
 	const char *optstring="t:g:z:o:cdh";
 	int index;
-	int mode = 1;
+	int mode = 999;
 
 	while((c = getopt_long(argc,argv,optstring,longopts,&index)) != -1)
 	  {
@@ -136,16 +136,34 @@ int main(int argc, char **argv)
 	          break;
 
 	        case 'g':
-	          l_opt_arg = optarg;
-	          //Gzip(l_opt_arg, mode);
-	          printf("Compressing %s Seq to gzip...\n", l_opt_arg);
-	          break;
+		   if ( mode > 1 )
+			{
+			 printf("--Parameters missing\n");
+			 printf("Please choose the compression or decompression algorithm\n");
+			 break;
+			}
+		   else
+			{
+			 l_opt_arg = optarg;
+	          	//Gzip(l_opt_arg, mode);
+	         	 printf("Compressing %s Seq to gzip...\n", l_opt_arg);
+	          	break;
+			}	
 
 	        case 'z':
-	          l_opt_arg = optarg;
-	          //7zip(l_opt_arg, mode);
-	          printf("Compressing %s Seq to 7zip...\n", l_opt_arg);
-	          break;
+		   if ( mode > 1 )
+			{
+			 printf("--Parameters missing\n");
+			 printf("Please choose the compression or decompression algorithm\n");
+			 break;
+			}
+		   else
+			{
+			 l_opt_arg = optarg;
+	         	 //7zip(l_opt_arg, mode);
+	          	 printf("Compressing %s Seq to 7zip...\n", l_opt_arg);
+	         	 break;
+			}	
 
 	        case 'o':
 	          l_opt_arg = optarg;
