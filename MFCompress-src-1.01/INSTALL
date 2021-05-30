@@ -1,0 +1,21 @@
+=== For linux:
+
+	Type "make -f Makefile.linux" to get the "MFCompressC" (encoder) and
+	"MFCompressD" (decoder) executables.
+
+=== For windows (32 bits), using a cross-compiler in linux:
+
+	Type "make -f Makefile.win32" to get the "MFCompressC32.exe"
+	(encoder) and "MFCompressD32.exe" (decoder) executables. You need to
+	have installed MinGW-w64 (http://mingw-w64.sourceforge.net/) to be able
+	to generate these binaries. If you do not know what I'm talking about,
+	please use the precompiled executables available in a companion package.
+
+=== For windows (64 bits), using a cross-compiler in linux:
+
+	Type "make -f Makefile.win64" to get the "MFCompressC64.exe"
+	(encoder) and "MFCompressD64.exe" (decoder) executables. You need to
+	have installed MinGW-w64 (http://mingw-w64.sourceforge.net/) to be able
+	to generate these binaries. If you do not know what I'm talking about,
+	please use the precompiled executables available in a companion package.
+
