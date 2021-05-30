@@ -25,4 +25,13 @@
    Release time: 2021.5.26
 
    Add restirction on mode choose. User must choose mode firstly.
+
+## Version 0.3.0
+
+   Release time: 2021.5.30
+
+   Add functions: 
+	* transfer fastq file to standard fasta file. Option: -t/--transfer
+	* extract sequences from standard fasta file or transfered file(FILENAME.transfer).
+	* count the total char number in specific file.
 	 

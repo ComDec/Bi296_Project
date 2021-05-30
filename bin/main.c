@@ -37,6 +37,9 @@ static char  *license_msg[] = {
 
            /* Personal Libary */
 #include "printhelp.h"
+#include "transfer_sequence.h"
+#include "extract_sequence.h"
+#include "count_char.h"
 /*
 #include "Convert.h"
 #include "FiletoSeq.h"
@@ -68,6 +71,7 @@ add your function declare here.
            /* Local Variables*/
 
 struct option longopts[] = {
+    { "extract",     required_argument,    NULL,                'e'    },
     { "transfer",    required_argument,    NULL,                't'    },
     { "compress",    no_argument,          NULL,                'c'    },
     { "decompress",  no_argument,          NULL,                'd'    },
@@ -107,7 +111,8 @@ int main(int argc, char **argv)
 
 	int c;   //Receive the prompt parameters.
 	char ec; //Receive the errorous parameters.
-	const char *optstring="t:g:z:o:cdh";
+	char output[1024]; //The filename of output file.
+	const char *optstring="t:e:g:z:o:cdh";
 	int index;
 	int mode = 999;
 
@@ -131,8 +136,14 @@ int main(int argc, char **argv)
 
 	        case 't':
 	          l_opt_arg = optarg;
-	          //transfer(l_opt_arg);
-	          printf("Transfer %s file to dcm...\n", l_opt_arg);
+	          transfer_sequence(l_opt_arg,output);
+	          printf("Transfer \"%s\" file to \"%s\"\n", l_opt_arg, output);
+	          break;
+
+	        case 'e':
+	          l_opt_arg = optarg;
+	          extract_sequence(l_opt_arg,output);
+	          printf("Extract \"%s\" file to \"%s\"\n", l_opt_arg, output);
 	          break;
 
 	        case 'g':

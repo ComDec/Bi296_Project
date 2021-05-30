@@ -28,7 +28,9 @@ Please fix your bug in here.
 
   -d, --decompress   Decompress mode
    
-  -t, --transfer     Transfer file into dcm format
+  -t, --transfer     Transfer file into fasta format
+  
+  -e, --extract      Extract sequences from standard fasta or transfered file (FILENAME.transfer)
         
   -z, --7zip         Compress dcm file into 7z format. The 7z filename is required.
 

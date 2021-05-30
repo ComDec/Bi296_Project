@@ -16,7 +16,7 @@ all: $(PATH_SRC)/*.c
 	ar -rsv $(PATH_LIB)/lib$(NAME_LIB).a *.o 
 .PHONY: install
 install:
-	$(CC) -o $(PATH_BIN)/main $(PATH_BIN)/main.c -L $(PATH_LIB) -l$(NAME_LIB) -I $(PATH_HEAD) 
+	$(CC) -o $(PATH_BIN)/main $(PATH_BIN)/main.c -L $(PATH_LIB) -l$(NAME_LIB) -I $(PATH_HEAD) -g
 .PHONY: clean
 clean:
 	rm -rf *.o
