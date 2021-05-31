@@ -35,3 +35,14 @@
 	* extract sequences from standard fasta file or transfered file(FILENAME.transfer).
 	* count the total char number in specific file.
 	 
+
+## Version 1.0.0
+
+   Release time: 2021.5.31
+
+   Add function:
+	* MFC compression/decompression algorithm is supported now.
+	  Features
+	  * .fa file is supposed to used.
+	  * Parallel progression is supported. Default progression: 2
+	  * Provide three modes of compressions.

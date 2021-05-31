@@ -1,0 +1,12 @@
+*********************
+Version 1.0.0
+
+Relase time: 2021.5.30
+
+Required: sed,touch
+
+Developers: Xi Wang, Zhongyi Wang, Ruichu Gu
+
+Github: github.com/ComDec/Bi296_Project
+
+*********************
