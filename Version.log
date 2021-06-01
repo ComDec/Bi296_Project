@@ -43,6 +43,10 @@
    Add function:
 	* MFC compression/decompression algorithm is supported now.
 	  Features
-	  * .fa file is supposed to used.
-	  * Parallel progression is supported. Default progression: 2
-	  * Provide three modes of compressions.
+
+## Version 1.0.1
+
+   Release time: 2021.6.1
+
+   Bug fixed:
+	Problem in creat_file.c Segmentation fault occur sometimes.
