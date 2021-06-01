@@ -41,6 +41,7 @@ static char  *license_msg[] = {
 #include "extract_sequence.h"
 #include "count_char.h"
 #include "creat_file.h"
+
 /*
 #include "Convert.h"
 #include "FiletoSeq.h"
@@ -91,6 +92,9 @@ char *l_opt_arg;  //Define a pointer to store the long option parameter
 int speed = 2;
 
 char parallel[20] = {"2"};
+
+
+
 
 /*
 *************************
@@ -248,55 +252,44 @@ int main(int argc, char **argv)
 			 printf("Please choose the compression or decompression algorithm\n");
 			 break;
 			}
+
+			
+
 		     else
 			{
+
+			   int flag = 1;
+
 			   l_opt_arg = optarg;
 
-			   char binfile[200] = {};
+			   char outfile[200] = {};
 
-			   char tablefile[200] = {};
-				
-		           strcpy(binfile,l_opt_arg);
-				
-			   strcpy(tablefile,l_opt_arg);
 
 			   if (mode == 1)
 			      {
 
 				printf("Compressing %s Seq via huffman method...\n", l_opt_arg);
+
+			        strcpy(outfile,l_opt_arg);
 				
-				strcat(binfile,"_bin");
+				strcat(outfile,".huf");
 
-				strcat(tablefile,"_table");
+				creat_file(outfile);  //Creat output file
 
-				creat_file(binfile);  //Creat output file
+				
 
-			        creat_file(tablefile);
-
-				char command[300] = {"./encode -f "};
-
-				system(strcat(command,l_opt_arg));
 			      }
 	          	   else if (mode == 0)
 			      {
-			        char command[300] = {"./decode -f "};
-				char outfile[200] = {};
-				
-				strcpy(outfile,l_opt_arg);
 
-			        strcat(binfile,"_bin");
-				strcat(tablefile,"_table");
-				strcat(outfile,"decode");
+				strcat(outfile,".decode");
 	
 				printf("Decompressing %s Seq via huffman method...\n", l_opt_arg);
 
-				strcat(command,binfile);
-				strcat(command," -t ");
-				strcat(command,tablefile);
-				strcat(command," -o ");
-				strcat(command,outfile);
+				creat_file(outfile);  //Creat output file
+
 				
-				system(command);
+
 			      }
 	         	 
 	          	break;

@@ -5,7 +5,7 @@
 void creat_file(char *filename)
 
 {
-	char *command = {"touch "};
+	char command[200] = {"touch "};
 	system(strcat(command,filename));
 	
 }
