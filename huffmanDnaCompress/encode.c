@@ -61,8 +61,8 @@ int main(int argc, char *argv[])
 	int sizeNoCompress = strlen(input) * BYTES_PER_CHAR;
 	double rcSimple = (double)sizeNoCompress / (double)sizeHuffmanSimple;
 	double rcComplex = (double)sizeNoCompress / (double)sizeHuffmanComplex;
-	printf("Compression ratio for the simple algorithm: %d/%d=%.3f\n",sizeNoCompress, sizeHuffmanSimple, rcSimple);
-	printf("Compression ratio for the complex algorithm: %d/%d=%.3f\n",sizeNoCompress, sizeHuffmanComplex, rcComplex);
+	// printf("Compression ratio for the simple algorithm: %d/%d=%.3f\n",sizeNoCompress, sizeHuffmanSimple, rcSimple);
+	// printf("Compression ratio for the complex algorithm: %d/%d=%.3f\n",sizeNoCompress, sizeHuffmanComplex, rcComplex);
 
 	free(binSimple);
 	free(binComplex);
@@ -111,7 +111,7 @@ char* huffmanSimple(char *input)
 	if(strcmp(input, original) != 0){
 		printf("There are errors compressing and decompressing the string using simple Huffman.\n");
 	} 
-	printf("%zu bits occupied when compressing using simple algorithm.\n\n", strlen(bin));
+	// printf("%zu bits occupied when compressing using simple algorithm.\n\n", strlen(bin));
 	freeHuffmanTable(table);
 	free(original);
 	free(symbolFrequency);
@@ -138,7 +138,7 @@ char* huffmanComplex(char *input, char *fileName)
 	if(strcmp(input, original) != 0){
 		printf("There are errors compressing and decomressing the string.\n");
 	} 
-	printf("%zu bits occupied when compressing using complex algorithm.\n\n", strlen(bin));
+	// printf("%zu bits occupied when compressing using complex algorithm.\n\n", strlen(bin));
 	freeStringValueList(symbols);
 	freeHuffmanTable(table);
 	free(original);
