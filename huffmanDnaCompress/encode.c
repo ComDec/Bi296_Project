@@ -87,7 +87,7 @@ int check = 0, i;
 
 int checkChar(char character)
 {
-	return character == ADENINE || character == GUANINE || character == CYTOSINE || character == THYMINE;
+	return character == 'A' || character == 'T' || character == 'C' || character == 'G';
 }
 
 
