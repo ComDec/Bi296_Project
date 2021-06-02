@@ -1,0 +1,53 @@
+BIN_DIR = .
+OBJS_DIR = ./objs.linux
+
+CC = gcc
+CFLAGS = -O2 -Wall -D_FILE_OFFSET_BITS=64 #-DDEBUG_1 -DDEBUG_2
+
+LIBS = -lm
+
+PROGS = $(BIN_DIR)/MFCompressC $(BIN_DIR)/MFCompressD
+
+OBJS = $(OBJS_DIR)/mem.o $(OBJS_DIR)/fasta.o $(OBJS_DIR)/fcm.o \
+	$(OBJS_DIR)/io.o $(OBJS_DIR)/bitio.o $(OBJS_DIR)/arith.o \
+	$(OBJS_DIR)/arith_aux.o
+
+all: dir $(PROGS)
+
+$(BIN_DIR)/MFCompressC: MFCompressC.c *.h $(OBJS)
+	$(CC) $(CFLAGS) -o $(BIN_DIR)/MFCompressC MFCompressC.c $(OBJS) $(LIBS)
+
+$(BIN_DIR)/MFCompressD: MFCompressD.c *.h $(OBJS)
+	$(CC) $(CFLAGS) -o $(BIN_DIR)/MFCompressD MFCompressD.c $(OBJS) $(LIBS)
+
+dir:
+	@if [ ! -d $(OBJS_DIR) ];\
+	then\
+		mkdir $(OBJS_DIR);\
+	fi
+
+$(OBJS_DIR)/mem.o: mem.c *.h
+	$(CC) -c $(CFLAGS) -o $(OBJS_DIR)/mem.o mem.c
+
+$(OBJS_DIR)/fasta.o: fasta.c *.h
+	$(CC) -c $(CFLAGS) -o $(OBJS_DIR)/fasta.o fasta.c
+
+$(OBJS_DIR)/fcm.o: fcm.c *.h
+	$(CC) -c $(CFLAGS) -o $(OBJS_DIR)/fcm.o fcm.c
+
+$(OBJS_DIR)/io.o: io.c *.h
+	$(CC) -c $(CFLAGS) -o $(OBJS_DIR)/io.o io.c
+
+$(OBJS_DIR)/bitio.o: bitio.c *.h
+	$(CC) -c $(CFLAGS) -o $(OBJS_DIR)/bitio.o bitio.c
+
+$(OBJS_DIR)/arith.o: arith.c *.h
+	$(CC) -c $(CFLAGS) -o $(OBJS_DIR)/arith.o arith.c
+
+$(OBJS_DIR)/arith_aux.o: arith_aux.c *.h
+	$(CC) -c $(CFLAGS) -o $(OBJS_DIR)/arith_aux.o arith_aux.c
+
+clean:
+	/bin/rm -rf $(OBJS_DIR)
+	/bin/rm -f $(PROGS)
+

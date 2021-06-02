@@ -5,7 +5,7 @@ void transfer_sequence(char *filename, char *output)
 
 {
   strcpy(output,filename);
-  strcat(output,".transfer");
+  strcat(output,".fa");
   char command1[1000] = {"sed '/^@/!d;s//>/;N' "};
   strcat(command1,filename);
   strcat(command1," >");

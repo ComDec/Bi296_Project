@@ -5,8 +5,8 @@
  * Copyright(C) 2021-2022 WX-WZY-GRC Group
  * Written by WX in 2021.5
 
- * Version: 1.0.0 (dev)
- * Lasted edit time: 2021.5.31
+ * Version: 1.1.0 (dev)
+ * Lasted edit time: 2021.6.2
 
  ****************************************** 
 
@@ -30,13 +30,15 @@ Introduction
 
 Basic Usage
 
-  ./main [Option] [Parameter] [Filename] ...
+  ./DNACom [Option] [Parameter] [Filename] ...
 
   > Filename must input at last.
 
 [OPTION]
 
   -h, --help         Obtain help from our doc
+
+  -v, --version	     Obtain version information
 
   -c, --compress     Compress mode
 
@@ -46,10 +48,9 @@ Basic Usage
   
   -e, --extract      Extract sequences from standard fasta or transfered file (FILENAME.transfer)
         
-  -f, --MFC          Compress .fa or .transfer file via MFC algorithm. 
-  		     The output file will be notes as suffix .mfc
+  -f, --MFC          Compress .fa via MFC algorithm. The output file will be notes as suffix .mfc
   
-  -m, --huffman      Compress .fa or .transfer file via huffman algorithm.
+  -m, --huffman      Compress .fa.ex or file containing only DNA sequences via huffman algorithm.
    
   -o, --optimize     Compare multipy algorithm to compress your file. 
                      Proffer a rank of compression rate and compression time.
@@ -68,11 +69,11 @@ Basic Usage
 			Speed 2: The balanced mode. Medium compression rate and medium memory cost.
 
 			Speed 3: The slowest mode. High compression rate and high memory cost.
-[Examples]
 
-  ./main -c -s 3 -p 10 -f test.fa
-  Utilized MFC algorithm to compress test.fa With speed 3 and parallel progression 10.
-  Combinated parameters input style is also allowed. See: ./main -cs 3 -p 10 -f test.fa
+  > Huffman algorithm
 
-  ./main -d -f -p 10 test.fa.mfc
-  Utilized MFC algorithm to decompress test.fa.mfc With parallel progression 10.
+  [Encodefile]	   Compressing [Encodefile] with two output files: [Encodefile_bin] and [Encodefile_table].
+
+  [Decodefile]	   Decompressing [Decodefile]. To simplify users input, users are allowed to 
+	           input the filename of [Encodefile_bin] or [Encodefile_table] only.
+

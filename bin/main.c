@@ -158,7 +158,8 @@ int main(int argc, char **argv)
 	        case 't':
 	          l_opt_arg = optarg;
 	          transfer_sequence(l_opt_arg,output);
-	          printf("Transfer \"%s\" file to \"%s\"\n", l_opt_arg, output);
+		  system("./suffix.sh");
+	          printf("Transfer \"%s\" file to fasta file\n", l_opt_arg);
 	          break;
 
 	        case 'e':
@@ -258,12 +259,10 @@ int main(int argc, char **argv)
 		     else
 			{
 
-			   int flag = 1;
 
 			   l_opt_arg = optarg;
 
 			   char outfile[200] = {};
-
 
 			   if (mode == 1)
 			      {
@@ -274,7 +273,13 @@ int main(int argc, char **argv)
 				
 				strcat(outfile,".huf");
 
-				creat_file(outfile);  //Creat output file
+				//creat_file(outfile);  //Creat output file
+
+ 				char command[300] = {"./Huffman_encode -f "};
+
+			 	strcat(command,l_opt_arg);
+
+				system(command);
 
 				
 
@@ -282,13 +287,37 @@ int main(int argc, char **argv)
 	          	   else if (mode == 0)
 			      {
 
-				strcat(outfile,".decode");
+				char command[300] = {"./Huffman_decode -f "};
 	
 				printf("Decompressing %s Seq via huffman method...\n", l_opt_arg);
 
-				creat_file(outfile);  //Creat output file
+				char binfile[200] = {};
 
+				char tablefile[200] = {};
+
+				strcpy(binfile,l_opt_arg);
+		
+				strcpy(tablefile,l_opt_arg);
+
+				strcat(binfile,"_bin");
+
+				strcat(tablefile,"_table");
+
+				//creat_file(outfile);  //Creat output file
+
+		                strcpy(outfile,l_opt_arg);
 				
+				strcat(outfile,".hufde");
+
+				strcat(command,binfile);
+
+				strcat(command," -t ");
+
+				strcat(command,tablefile);
+
+				strcat(command," -o ");
+
+				system(strcat(command,outfile));
 
 			      }
 	         	 

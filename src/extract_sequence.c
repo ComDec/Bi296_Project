@@ -12,7 +12,7 @@ void extract_sequence(char *filename, char *output)
 
     strcpy(output,filename);         
  
-    strcat(output,".extract");
+    strcat(output,".ex");
     
     char command[10] = {"touch "};
 

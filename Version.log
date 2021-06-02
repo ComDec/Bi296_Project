@@ -50,3 +50,18 @@
 
    Bug fixed:
 	Problem in creat_file.c Segmentation fault occur sometimes.
+
+## Version 1.0.2
+
+   Release time: 2021.6.2
+
+   Function improvement
+	the fastq file will be converted to fasta as "xx.fa" instead of "xx.fq.fa"
+	Simplify the suffixs of transfered or extracted file as "xx.fa" and "xx.ex"
+
+## Version 1.1.0
+
+   Release time: 2021.6.2
+
+   Add function:
+	The Huffman compression algorithms is supported now.
