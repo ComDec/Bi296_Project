@@ -100,17 +100,20 @@ int ifOEC(char* cod)
 // This function will encode the DNA sequences in input file to binary sequence and generate a binfile. 
 int encode(char* iptfile)
 {
-	FILE *fp1 = NULL, *fp2 = NULL;
-	char binfile[30], *line = NULL, cod[4], c;
-	int i, length, index;
+	FILE *fp1 = NULL, *fp2 = NULL, *fp3 = NULL;
+	char binfile[30], dicfile[30], *line = NULL, cod[4], c;
+	int i, j, length, index;
 	size_t len = 0; 
 	ssize_t read; // The parameters len and read are used in function getline.
 
 	strcpy(binfile, iptfile);
+	strcpy(dicfile, iptfile);
 	strcat(binfile, "_bin");
+	strcat(dicfile, "_dic");
 
 	fp1 = fopen(iptfile, "r");
-	fp2 = fopen(binfile, "a+");
+	fp2 = fopen(binfile, "w+");
+	fp3 = fopen(dicfile, "w+");
 	if(fp1 == NULL){
 		printf("Error opening file %s.\n", iptfile);
 		return -1;	
@@ -171,8 +174,37 @@ int encode(char* iptfile)
 		}
 	}
 	
+	// Write the dicfile
+	char cods[4];
+	cods[3] = '\0';
+	int k, d;
+	for(i=0; i<8; ++i){
+		d = ocodens[i];
+		for(j=0; j<3; ++j){
+			k = d%4;
+			d /= 4;
+			switch(k){
+				case 0:
+					cods[2-j]='A';
+					break;
+				case 1:
+					cods[2-j]='G';
+					break;
+				case 2:
+					cods[2-j]='C';
+					break;
+				case 3:
+					cods[2-j]='T';
+					break;
+			}
+		}
+		fputs(cods, fp3);
+		fputs("\n", fp3);
+	}
+	
 	fclose(fp1);
 	fclose(fp2);
+	fclose(fp3);
 	if(line)
 		free(line);
 	return 0;
@@ -182,22 +214,29 @@ int main(int argc, char* argv[])
 {
 	int i;
 	char *filename = NULL;
+	char *binfile = NULL;
 
 	if(argc!=3 && argc!=5){
 		printf("Usage:\n\tCompression: ./main -e filename\n\tDecompression: ./main -b binfile -d dicfile\n");
 		return -1;
 	}
-	if(argv[1]){
+	if(argc==3){
 		filename = argv[2];
 		OECcount(filename);
-//		for(i=0; i<64;++i){
-//			printf("%d ", codens[i]);
-//		printf("\n");
+		for(i=0; i<64; ++i)
+			printf("%d ", codens[i]);
+		printf("\n");
 		OECselct();
-//		for(i=0; i<8; ++i)
-//			printf("%d ", ocodens[i]);
-//		printf("\n");
+		for(i=0; i<8; ++i)
+			printf("%d ", ocodens[i]);
+		printf("\n");
 		encode(filename);
+		for(i=0; i<8; ++i)
+			printf("%d ", ocodens[i]);
+		printf("\n");
+	}
+	else{
+		
 	}
 	
 	return 0;
