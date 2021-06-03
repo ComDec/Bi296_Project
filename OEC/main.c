@@ -1,3 +1,4 @@
+/* Optimal Eight Codens -- Wang Zhongyi*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -6,10 +7,11 @@
 int codens[64] = {0};
 int ocodens[8] = {0};
 struct OEC{
-	int freqcy;
-	int index;
-	char bincd[5];
+	char bascd[4];
 }OECodens[8];
+struct Base{
+	char bas[2];
+}base[4];
 
 // Convert a base-char to a digit. 
 int ctod(char c, int d)
@@ -101,7 +103,7 @@ int ifOEC(char* cod)
 int encode(char* iptfile)
 {
 	FILE *fp1 = NULL, *fp2 = NULL, *fp3 = NULL;
-	char binfile[30], dicfile[30], *line = NULL, cod[4], c;
+	char binfile[100], dicfile[100], *line = NULL, cod[4], c;
 	int i, j, length, index;
 	size_t len = 0; 
 	ssize_t read; // The parameters len and read are used in function getline.
@@ -126,28 +128,28 @@ int encode(char* iptfile)
 			strncpy(cod, line+i, 3);
 			if(index = ifOEC(cod)){
 				switch(index){
-					case '1':
+					case 1:
 						fputs("1000", fp2);
 						break;
-					case '2':
+					case 2:
 						fputs("1001", fp2);
 						break;
-					case '3':
+					case 3:
 						fputs("1010", fp2);
 						break;
-					case '4':
+					case 4:
 						fputs("1011", fp2);
 						break;
-					case '5':
+					case 5:
 						fputs("1100", fp2);
 						break;
-					case '6':
+					case 6:
 						fputs("1101", fp2);
 						break;
-					case '7':
+					case 7:
 						fputs("1110", fp2);
 						break;
-					case '8':
+					case 8:
 						fputs("1111", fp2);
 						break;
 				}
@@ -172,6 +174,7 @@ int encode(char* iptfile)
 			}
 			++i;
 		}
+		fputs("\n", fp2);
 	}
 	
 	// Write the dicfile
@@ -210,11 +213,95 @@ int encode(char* iptfile)
 	return 0;
 }
 
+int decode(char* dbinfile, char* dicfile)
+{
+	FILE *fp1 = NULL, *fp2 = NULL, *fp3 = NULL;
+	char optfile[100], *line = NULL, c, bit3[5], bit2[4], buff[4];
+	int i, j, d, length, cods[8] = {0};
+	size_t len = 0;
+	ssize_t read;
+
+	bit3[4] = '\0'; 
+	bit2[3] = '\0';
+	buff[3] = '\0';
+
+	strcpy(optfile, dbinfile);
+	strcat(optfile, ".d");		// The name of optfile is "*.d"
+
+	fp1 = fopen(dbinfile, "r");
+	if(fp1 == NULL){
+		printf("Error opening file %s.\n", dbinfile);
+		return -1;	
+	}
+	fp2 = fopen(dicfile, "r");
+	if(fp2 == NULL){
+		printf("Error opening file %s.\n", dicfile);
+		return -2;	
+	}
+	fp3 = fopen(optfile, "w+");
+
+	// Record the Optimal Eight Codens with array cods[8].
+	i = 0;
+	while(fscanf(fp2, "%s", buff)){ // The break statement is essential!
+		if(i>=8){
+			break;
+		}
+		strcpy(OECodens[i].bascd, buff);
+		++i;
+	}
+
+	while((read = getline(&line, &len, fp1)) != -1){
+		length = strlen(line);
+		i = 0;
+		while(i<length){
+			if((c=line[i]) == '1'){ // read a coden
+				++i;
+				d = 0;
+				for(j=0; j<3; ++j){
+					if(line[i+j]=='0')
+						d = d*2;
+					else
+						d = d*2 + 1;
+				}
+				i+=3;
+				fputs(OECodens[d].bascd, fp3);
+			}else{ // read a base
+				++i;
+				d = 0;
+				for(j=0; j<2; ++j){
+					if(line[i+j]=='0')
+						d = d*2;
+					else
+						d = d*2 + 1;
+				}
+				i+=2;
+				fputs(base[d].bas, fp3);
+			}
+		}
+		printf("\n");
+	}
+
+	fclose(fp1);
+	fclose(fp2);
+	fclose(fp3);
+	if(line)
+		free(line);
+	return 0;
+}
+
 int main(int argc, char* argv[])
 {
 	int i;
 	char *filename = NULL;
 	char *binfile = NULL;
+	char *dbinfile = NULL;
+	char *dicfile = NULL;
+
+	// store bases 'A', 'G', 'C', 'T'
+	strcpy(base[0].bas, "A");
+	strcpy(base[1].bas, "G");
+	strcpy(base[2].bas, "C");
+	strcpy(base[3].bas, "T");
 
 	if(argc!=3 && argc!=5){
 		printf("Usage:\n\tCompression: ./main -e filename\n\tDecompression: ./main -b binfile -d dicfile\n");
@@ -223,20 +310,22 @@ int main(int argc, char* argv[])
 	if(argc==3){
 		filename = argv[2];
 		OECcount(filename);
-		for(i=0; i<64; ++i)
+/*		for(i=0; i<64; ++i)
 			printf("%d ", codens[i]);
-		printf("\n");
+		printf("\n");  */
 		OECselct();
-		for(i=0; i<8; ++i)
+/*		for(i=0; i<8; ++i)
 			printf("%d ", ocodens[i]);
-		printf("\n");
+		printf("\n");  */
 		encode(filename);
-		for(i=0; i<8; ++i)
-			printf("%d ", ocodens[i]);
-		printf("\n");
 	}
 	else{
-		
+		dbinfile = argv[2];
+		dicfile = argv[4];
+		decode(dbinfile, dicfile);
+/*		for(i=0; i<8; ++i)
+			printf("%s ", OECodens[i].bascd);
+		printf("\n");  */
 	}
 	
 	return 0;
