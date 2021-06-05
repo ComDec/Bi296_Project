@@ -1,0 +1,81 @@
+# DCom is a mini program for DNA sequences compression, decompression, and scheme advicing.
+# This is a document to record develop log.
+
+## Version 0.1
+
+   Release time: 2021.5.22
+
+   Construction of main function. Add a "printhelp()" function to print help doc. Provide options choose mode as FULL NAME and SHORT NAME (-h or help).
+
+## Version 0.2
+
+   Release time: 2021.5.24
+
+   Reconstruction of main function. Utilizing getopt() functions to obtain prompt parameters. Provide options with LONG OPTION, SHORT OPTION, and MIX OPTION.
+   (-h, --help, -cg)
+
+## Version 0.2.1
+
+   Release time: 2021.5.24
+
+   Fix bugs of main function.
+
+## Version 0.2.2
+
+   Release time: 2021.5.26
+
+   Add restirction on mode choose. User must choose mode firstly.
+
+## Version 0.3.0
+
+   Release time: 2021.5.30
+
+   Add functions: 
+	* transfer fastq file to standard fasta file. Option: -t/--transfer
+	* extract sequences from standard fasta file or transfered file(FILENAME.transfer).
+	* count the total char number in specific file.
+	 
+
+## Version 1.0.0
+
+   Release time: 2021.5.31
+
+   Add function:
+	* MFC compression/decompression algorithm is supported now.
+	  Features
+
+## Version 1.0.1
+
+   Release time: 2021.6.1
+
+   Bug fixed:
+	Problem in creat_file.c Segmentation fault occur sometimes.
+
+## Version 1.0.2
+
+   Release time: 2021.6.2
+
+   Function improvement
+	the fastq file will be converted to fasta as "xx.fa" instead of "xx.fq.fa"
+	Simplify the suffixs of transfered or extracted file as "xx.fa" and "xx.ex"
+
+## Version 1.1.0
+
+   Release time: 2021.6.2
+
+   Add function:
+	The Huffman compression algorithms is supported now.
+
+## Version 1.2.0
+
+   Release time: 2021.6.4
+
+   Add function:
+	The OEC compression algorithms is supported now.
+
+## Version 1.3.0
+
+   Release time: 2021.6.5
+
+   Add function:
+	The Num compression algorithms is supported now.
