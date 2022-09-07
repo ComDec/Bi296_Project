@@ -1,4 +1,5 @@
 # Bi296_Project
+# See new version in branch dev
 Project for bi296 course.
 DNACompress
 This is program for DNA sequence convertion, compression, and test.
